@@ -3,6 +3,7 @@ import { Cuenta } from './Cuenta';
 
 export interface Inversion {
   idInversion: string;
+  nombre: string;
   cliente: Cliente;
   cuenta: Cuenta;
   monto: number;

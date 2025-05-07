@@ -10,17 +10,11 @@ export class InversionService {
   private datosInversion: Partial<Inversion> = {};
   private http = inject(HttpClient);
 
-  actualizarDatosInversion(parciales: Partial<Inversion>): void {
-    this.datosInversion = { ...this.datosInversion, ...parciales };
-  }
-  obtenerDatosInversion(): Partial<Inversion> {
-    return this.datosInversion;
-  }
   calcularTasa(monto: number): number {
     if (monto < 5000) return 0.03;
     if (monto < 10000) return 0.045;
     if (monto < 15000) return 0.05;
-    if (monto < 20000) return 0.055;
+    if (monto < 20000) return 0.06;
     return 0.08;
   }
   calcularRendimiento(monto: number, tasa: number): number {

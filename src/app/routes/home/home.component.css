@@ -1,6 +1,36 @@
-h1 {
+.titulo {
   color: var(--segundo-color);
   font-size: 3rem;
+  position: absolute;
+  top: 5rem;
+  text-align: center;
+  width: 100%;
+}
+.inversiones {
+  display: grid;
+  gap: 1rem;
+  width: 60%;
+  height: auto;
+  text-align: center;
+}
+
+.inversion {
+  background-color: #ff6868;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primer-color);
+  font-size: 1.5rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.inversion:hover {
+  background-color: var(--segundo-color);
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -19,6 +49,12 @@ h1 {
     font-size: 0.875rem;
     width: 100%;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inversiones {
+    grid-template-columns: 1fr;
   }
 }
 
