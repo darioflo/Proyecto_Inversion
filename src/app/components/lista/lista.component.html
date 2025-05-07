@@ -1,0 +1,36 @@
+<form
+  (submit)="enviarMontoPlazo($event)"
+  [formGroup]="formulario"
+  class="formulario flex justify-center items-center flex-col gap-4 h-auto w-full max-w-md p-6 border rounded-lg shadow-lg bg-white"
+>
+  <label for="monto" class="text-lg font-semibold text-gray-700"
+    >Monto a invertir:</label
+  >
+  <input
+    type="number"
+    id="monto"
+    name="monto"
+    formControlName="monto"
+    required
+    min="0"
+    max="1000000000000000000"
+    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-var(--segundo-color)"
+  />
+  <label for="plazo" class="text-lg font-semibold text-gray-700"
+    >Plazo (anual):</label
+  >
+  <select
+    name="plazo"
+    formControlName="plazo"
+    id="plazo"
+    required
+    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-var(--segundo-color)"
+  >
+    <option [value]="1">1 año</option>
+    <option [value]="2">2 años</option>
+    <option [value]="3">3 años</option>
+  </select>
+  <button type="submit" class="boton-continuar w-full text-lg font-semibold">
+    Continuar
+  </button>
+</form>

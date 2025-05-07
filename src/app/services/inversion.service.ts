@@ -1,0 +1,32 @@
+import { inject, Injectable } from '@angular/core';
+import { Inversion } from '../models/Inversión';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InversionService {
+  private datosInversion: Partial<Inversion> = {};
+  private http = inject(HttpClient);
+
+  actualizarDatosInversion(parciales: Partial<Inversion>): void {
+    this.datosInversion = { ...this.datosInversion, ...parciales };
+  }
+  obtenerDatosInversion(): Partial<Inversion> {
+    return this.datosInversion;
+  }
+  calcularTasa(monto: number): number {
+    if (monto < 5000) return 0.03;
+    if (monto < 10000) return 0.045;
+    if (monto < 15000) return 0.05;
+    if (monto < 20000) return 0.055;
+    return 0.08;
+  }
+  calcularRendimiento(monto: number, tasa: number): number {
+    return monto * tasa;
+  }
+  obtenerInversiones(): Observable<Inversion[]> {
+    return this.http.get<Inversion[]>('/api/inversiones');
+  }
+}
