@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Inversion } from '../models/Inversión';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class InversionService {
   private datosInversion: Partial<Inversion> = {};
   private http = inject(HttpClient);
+  private inversionActual = new BehaviorSubject<Inversion | null>(null);
+  inversionActual$ = this.inversionActual.asObservable();
 
   calcularTasa(monto: number): number {
     if (monto < 5000) return 0.03;
@@ -22,5 +24,15 @@ export class InversionService {
   }
   obtenerInversiones(): Observable<Inversion[]> {
     return this.http.get<Inversion[]>('/api/inversiones');
+  }
+
+  actualizarInversionActual(inversion: Inversion): void {
+    this.inversionActual.next(inversion);
+  }
+
+  actualizarInversionBackend(inversion: Inversion): Observable<Inversion> {
+    const url = `api/inversiones/${inversion.idInversion}`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<Inversion>(url, inversion, { headers });
   }
 }

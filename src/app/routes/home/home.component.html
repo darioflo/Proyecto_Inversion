@@ -5,13 +5,15 @@
     Hola {{ clienteAutenticado?.nombre }} te damos la bienvenida a tus
     inversiones:
   </h1>
-  <div class="inversiones">
-    <div
-      class="inversion"
-      *ngFor="let inversion of inversionesDeCliente"
-      routerLink="/vistaSeleccion"
-    >
-      <p>{{ inversion.nombre }}</p>
+  <div class="contenedor-inversiones">
+    <div class="inversiones" *ngFor="let inversion of inversionesDeCliente">
+      <div
+        class="inversion"
+        [routerLink]="['/vistaSeleccion', inversion.idInversion]"
+        (click)="obtenerInversionActual(inversion.idInversion)"
+      >
+        <p>{{ inversion.nombre }}</p>
+      </div>
     </div>
   </div>
 </section>

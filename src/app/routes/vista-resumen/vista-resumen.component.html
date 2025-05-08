@@ -1,5 +1,51 @@
-<section
-  class="vista-resumen w-screen h-screen flex justify-center items-center"
->
-  <h2>hhhhh</h2>
+<app-boton-regresar></app-boton-regresar>
+<section class="vista-resumen">
+  <div class="resumen-contenedor">
+    <h2 class="titulo-resumen">Resumen de Inversión</h2>
+
+    <div class="dato">
+      <span class="label">Nombre:</span>
+      <span class="valor">{{ datosDeInversion?.cliente?.nombre }}</span>
+    </div>
+    <div class="dato">
+      <span class="label">Apellidos:</span>
+      <span class="valor">{{ datosDeInversion?.cliente?.apellidos }}</span>
+    </div>
+    <div class="dato">
+      <span class="label">Monto disponible en cuenta:</span>
+      <span class="valor" data-color="verde"
+        ><b>${{ datosDeInversion?.cuenta?.monto }}</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Inversión en:</span>
+      <span class="valor">{{ datosDeInversion?.nombre }}</span>
+    </div>
+    <div class="dato">
+      <span class="label">Monto invertido:</span>
+      <span class="valor" data-color="verde"
+        ><b>${{ datosDeInversion?.monto }}</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Plazo en años:</span>
+      <span class="valor"
+        ><b>{{ datosDeInversion?.plazo }}</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Tasa ofrecida:</span>
+      <span class="valor"
+        ><b>{{ datosDeInversion?.tasa }}%</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Rendimiento esperado:</span>
+      <span class="valor"
+        ><b>${{ datosDeInversion?.rendimiento }}</b></span
+      >
+    </div>
+
+    <button class="continuar">Continuar</button>
+  </div>
 </section>

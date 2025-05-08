@@ -53,4 +53,23 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+
+  obtenerInversionActual(idInversion: string) {
+    this.servicioInversiones.obtenerInversiones().subscribe({
+      next: (inversiones) => {
+        const inversion = inversiones.find(
+          (inversion) => inversion.idInversion === idInversion
+        );
+        if (inversion) {
+          this.servicioInversiones.actualizarInversionActual(inversion);
+          console.log('Inversión Actual:', inversion);
+        } else {
+          console.log('No se encontró la inversión con el ID:', idInversion);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 }

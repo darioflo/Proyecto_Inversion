@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { InversionService } from '../../services/inversion.service';
+import { Inversion } from '../../models/Inversión';
 
 @Component({
   selector: 'app-lista',
@@ -14,9 +15,11 @@ import { InversionService } from '../../services/inversion.service';
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css',
 })
-export class ListaComponent {
+export class ListaComponent implements OnInit {
   router = inject(Router);
   inversionServicio = inject(InversionService);
+  servicioInversiones = inject(InversionService);
+  inversionActual!: Inversion | null;
 
   formulario = new FormGroup({
     monto: new FormControl<number | null>(null, [
@@ -28,11 +31,43 @@ export class ListaComponent {
 
   enviarMontoPlazo(evento: Event) {
     evento.preventDefault();
-    if (this.formulario.valid) {
+    if (this.formulario.valid && this.inversionActual) {
+      const { monto, plazo } = this.formulario.value;
+      (this.inversionActual.monto = monto!),
+        (this.inversionActual.plazo = plazo!);
+
+      this.inversionActual.cuenta.monto =
+        this.inversionActual.cuenta.monto - monto!;
+
+      this.inversionActual.tasa = this.servicioInversiones.calcularTasa(monto!);
+
+      this.inversionActual.rendimiento =
+        this.servicioInversiones.calcularRendimiento(
+          this.inversionActual.monto,
+          this.inversionActual.tasa
+        );
+
       this.router.navigate(['/vistaResumen']);
-      console.log('Datos enviados: ', this.formulario.value);
+      console.log(
+        'Datos enviados: ',
+        this.formulario.value,
+        'Inversión Actualizada',
+        this.inversionActual
+      );
     } else {
       console.log('Formulario inválido');
     }
+  }
+
+  ngOnInit(): void {
+    this.servicioInversiones.inversionActual$.subscribe({
+      next: (data) => {
+        this.inversionActual = data;
+        console.log(this.inversionActual);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

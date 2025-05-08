@@ -6,7 +6,7 @@ import { VistaResumenComponent } from './routes/vista-resumen/vista-resumen.comp
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'vistaSeleccion', component: VistaSeleccionComponent },
+  { path: 'vistaSeleccion/:id', component: VistaSeleccionComponent },
   { path: 'vistaResumen', component: VistaResumenComponent },
 ];
 

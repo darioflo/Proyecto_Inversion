@@ -8,10 +8,18 @@
 }
 .inversiones {
   display: grid;
-  gap: 1rem;
-  width: 60%;
+  width: 100%;
   height: auto;
   text-align: center;
+}
+
+.contenedor-inversiones {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 0.5rem;
 }
 
 .inversion {
@@ -52,7 +60,10 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 540px) {
+  .titulo {
+    font-size: 1.9rem;
+  }
   .inversiones {
     grid-template-columns: 1fr;
   }
