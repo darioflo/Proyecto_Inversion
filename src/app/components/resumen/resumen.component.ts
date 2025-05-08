@@ -3,6 +3,7 @@ import { InversionService } from '../../services/inversion.service';
 import { Inversion } from '../../models/Inversión';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { TraerInversion } from '../../core/utils/base.component';
 
 @Component({
   selector: 'app-resumen',
@@ -10,27 +11,17 @@ import { Router } from '@angular/router';
   templateUrl: './resumen.component.html',
   styleUrl: './resumen.component.css',
 })
-export class ResumenComponent implements OnInit {
-  servicioInversiones = inject(InversionService);
-  datosDeInversion!: Inversion | null;
+export class ResumenComponent extends TraerInversion implements OnInit {
+  servicioInversion = inject(InversionService);
   ubicacion = inject(Location);
   router = inject(Router);
 
   ngOnInit(): void {
-    this.servicioInversiones.inversionActual$.subscribe({
-      next: (inversion) => {
-        this.datosDeInversion = inversion;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-
-    console.log('Inversion desde vista Resumen', this.datosDeInversion);
+    this.suscribirseAInversion(this.servicioInversion);
   }
 
   regresar() {
-    this.servicioInversiones.inversionActual$.subscribe({
+    this.servicioInversion.inversionActual$.subscribe({
       next: (inversion) => {
         if (inversion?.cuenta && inversion.monto) {
           inversion.cuenta.monto += inversion.monto;
@@ -44,7 +35,7 @@ export class ResumenComponent implements OnInit {
   }
   continuar() {
     this.router.navigate([
-      `/vistaInstruccion/${this.datosDeInversion?.idInversion}`,
+      `/vistaInstruccion/${this.inversionActual?.idInversion}`,
     ]);
   }
 }

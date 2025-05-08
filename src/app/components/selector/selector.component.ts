@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
 import { Inversion } from '../../models/Inversión';
 import { Location, NgIf } from '@angular/common';
+import { TraerInversion } from '../../core/utils/base.component';
 
 @Component({
   selector: 'app-selector',
@@ -9,25 +10,14 @@ import { Location, NgIf } from '@angular/common';
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.css',
 })
-export class SelectorComponent implements OnInit {
-  servicioInversion = inject(InversionService);
-  inversionActual!: Inversion | null;
+export class SelectorComponent extends TraerInversion implements OnInit {
   instruccionSeleccionada: string = '';
   mostrarResultados: boolean = false;
   ubicacion = inject(Location);
+  servicioInversion = inject(InversionService);
+
   ngOnInit(): void {
-    this.servicioInversion.inversionActual$.subscribe({
-      next: (inversion) => {
-        this.inversionActual = inversion;
-        console.log(
-          'instruccion de vencimiento:',
-          this.inversionActual?.instruccionVencimiento
-        );
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.suscribirseAInversion(this.servicioInversion);
   }
 
   reinvertirInversionGanancia(monto: number, rendimiento: number) {

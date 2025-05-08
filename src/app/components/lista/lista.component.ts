@@ -9,6 +9,7 @@ import {
 import { InversionService } from '../../services/inversion.service';
 import { Inversion } from '../../models/Inversión';
 import { Location } from '@angular/common';
+import { TraerInversion } from '../../core/utils/base.component';
 
 @Component({
   selector: 'app-lista',
@@ -16,11 +17,9 @@ import { Location } from '@angular/common';
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css',
 })
-export class ListaComponent implements OnInit {
+export class ListaComponent extends TraerInversion implements OnInit {
   router = inject(Router);
-  inversionServicio = inject(InversionService);
-  servicioInversiones = inject(InversionService);
-  inversionActual!: Inversion | null;
+  servicioInversion = inject(InversionService);
   ubicacion = inject(Location);
 
   formulario = new FormGroup({
@@ -32,15 +31,7 @@ export class ListaComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.servicioInversiones.inversionActual$.subscribe({
-      next: (data) => {
-        this.inversionActual = data;
-        console.log(this.inversionActual);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.suscribirseAInversion(this.servicioInversion);
   }
 
   enviarMontoPlazo(evento: Event) {
@@ -54,12 +45,10 @@ export class ListaComponent implements OnInit {
         this.inversionActual.cuenta.monto =
           this.inversionActual.cuenta.monto - monto!;
 
-        this.inversionActual.tasa = this.servicioInversiones.calcularTasa(
-          monto!
-        );
+        this.inversionActual.tasa = this.servicioInversion.calcularTasa(monto!);
 
         this.inversionActual.rendimiento =
-          this.servicioInversiones.calcularRendimiento(
+          this.servicioInversion.calcularRendimiento(
             this.inversionActual.monto,
             this.inversionActual.tasa
           );
