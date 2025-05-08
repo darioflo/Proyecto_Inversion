@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
 import { Inversion } from '../../models/Inversión';
-import { NgIf } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-selector',
@@ -14,6 +14,7 @@ export class SelectorComponent implements OnInit {
   inversionActual!: Inversion | null;
   instruccionSeleccionada: string = '';
   mostrarResultados: boolean = false;
+  ubicacion = inject(Location);
   ngOnInit(): void {
     this.servicioInversion.inversionActual$.subscribe({
       next: (inversion) => {
@@ -92,5 +93,7 @@ export class SelectorComponent implements OnInit {
   }
 
   finalizarCompra() {}
-  regresar() {}
+  regresar() {
+    this.ubicacion.back();
+  }
 }
