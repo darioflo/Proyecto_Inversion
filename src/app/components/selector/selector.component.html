@@ -1,1 +1,49 @@
-<p>selector works!</p>
+<div class="resumen-contenedor">
+  <h2 class="titulo-resumen">Instrucción de Vencimiento</h2>
+
+  <form class="formulario">
+    <div class="dato">
+      <label for="instruccion" class="label">Selecciona una instrucción:</label>
+      <select
+        id="instruccion"
+        class="valor"
+        (change)="cambiodeSeleccion($event)"
+      >
+        <option value="">Escoja una opción</option>
+        <option value="reinvertirGanancia">
+          Reinvertir Inversion-Ganancia
+        </option>
+        <option value="reinvertirInversion">Reinvertir Inversión</option>
+        <option value="reembolsoTotal">Reembolso Total</option>
+      </select>
+    </div>
+    <div class="resultados" *ngIf="mostrarResultados">
+      <div class="dato">
+        <p class="label">Saldo de inversión:</p>
+        <p class="resaltar">{{ inversionActual?.monto }}</p>
+      </div>
+      <div class="dato">
+        <p class="label">Saldo de cuenta:</p>
+        <p class="resaltar">{{ inversionActual?.cuenta?.monto }}</p>
+      </div>
+      <div class="dato">
+        <p class="label">Ganancia:</p>
+        <p class="resaltar">
+          {{
+            (inversionActual?.cuenta?.monto ?? 0) -
+              (inversionActual?.monto ?? 0)
+          }}
+        </p>
+      </div>
+    </div>
+
+    <div class="botones">
+      <button type="button" class="continuar" (click)="finalizarCompra()">
+        Finalizar Compra
+      </button>
+      <button type="button" class="continuar" (click)="regresar()">
+        Regresar
+      </button>
+    </div>
+  </form>
+</div>

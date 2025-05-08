@@ -79,3 +79,16 @@
     font-size: 0.75rem;
   }
 }
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1rem;
+    display: block;
+    padding: 1rem;
+  }
+
+  .boton-continuar {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}

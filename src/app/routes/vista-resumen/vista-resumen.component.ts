@@ -1,29 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ListaComponent } from '../../components/lista/lista.component';
 import { InversionService } from '../../services/inversion.service';
 import { Inversion } from '../../models/Inversión';
-import { BotonRegresarComponent } from '../../components/boton-regresar/boton-regresar.component';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { ResumenComponent } from '../../components/resumen/resumen.component';
 
 @Component({
   selector: 'app-vista-resumen',
-  imports: [BotonRegresarComponent],
+  imports: [ResumenComponent],
   templateUrl: './vista-resumen.component.html',
   styleUrl: './vista-resumen.component.css',
 })
 export class VistaResumenComponent implements OnInit {
-  servicioInversiones = inject(InversionService);
-  datosDeInversion!: Inversion | null;
+  private route = inject(ActivatedRoute);
+  idPage: string | null = '';
 
   ngOnInit(): void {
-    this.servicioInversiones.inversionActual$.subscribe({
-      next: (inversion) => {
-        this.datosDeInversion = inversion;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-
-    console.log('Inversion desde vista Resumen', this.datosDeInversion);
+    this.idPage = this.route.snapshot.paramMap.get('id');
+    console.log('ID de la página:', this.idPage);
   }
 }

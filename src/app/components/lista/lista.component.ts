@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { InversionService } from '../../services/inversion.service';
 import { Inversion } from '../../models/Inversión';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lista',
@@ -20,6 +21,7 @@ export class ListaComponent implements OnInit {
   inversionServicio = inject(InversionService);
   servicioInversiones = inject(InversionService);
   inversionActual!: Inversion | null;
+  ubicacion = inject(Location);
 
   formulario = new FormGroup({
     monto: new FormControl<number | null>(null, [
@@ -28,36 +30,6 @@ export class ListaComponent implements OnInit {
     ]),
     plazo: new FormControl<number>(1, [Validators.required, Validators.min(1)]),
   });
-
-  enviarMontoPlazo(evento: Event) {
-    evento.preventDefault();
-    if (this.formulario.valid && this.inversionActual) {
-      const { monto, plazo } = this.formulario.value;
-      (this.inversionActual.monto = monto!),
-        (this.inversionActual.plazo = plazo!);
-
-      this.inversionActual.cuenta.monto =
-        this.inversionActual.cuenta.monto - monto!;
-
-      this.inversionActual.tasa = this.servicioInversiones.calcularTasa(monto!);
-
-      this.inversionActual.rendimiento =
-        this.servicioInversiones.calcularRendimiento(
-          this.inversionActual.monto,
-          this.inversionActual.tasa
-        );
-
-      this.router.navigate(['/vistaResumen']);
-      console.log(
-        'Datos enviados: ',
-        this.formulario.value,
-        'Inversión Actualizada',
-        this.inversionActual
-      );
-    } else {
-      console.log('Formulario inválido');
-    }
-  }
 
   ngOnInit(): void {
     this.servicioInversiones.inversionActual$.subscribe({
@@ -69,5 +41,46 @@ export class ListaComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  enviarMontoPlazo(evento: Event) {
+    evento.preventDefault();
+    if (this.formulario.valid && this.inversionActual) {
+      const { monto, plazo } = this.formulario.value;
+      (this.inversionActual.monto = monto!),
+        (this.inversionActual.plazo = plazo!);
+
+      if (this.inversionActual.monto <= this.inversionActual.cuenta.monto) {
+        this.inversionActual.cuenta.monto =
+          this.inversionActual.cuenta.monto - monto!;
+
+        this.inversionActual.tasa = this.servicioInversiones.calcularTasa(
+          monto!
+        );
+
+        this.inversionActual.rendimiento =
+          this.servicioInversiones.calcularRendimiento(
+            this.inversionActual.monto,
+            this.inversionActual.tasa
+          );
+
+        this.router.navigate([
+          `vistaResumen/${this.inversionActual.idInversion}`,
+        ]);
+        console.log(
+          'Datos enviados: ',
+          this.formulario.value,
+          'Inversión Actualizada',
+          this.inversionActual
+        );
+      }
+    } else {
+      console.log('Formulario inválido');
+      window.alert('Formulario inválido');
+    }
+  }
+
+  regresar() {
+    this.ubicacion.back();
   }
 }

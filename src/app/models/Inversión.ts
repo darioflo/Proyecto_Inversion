@@ -13,5 +13,6 @@ export interface Inversion {
   instruccionVencimiento:
     | 'reinvertirGanancia'
     | 'reinvertirInversion'
-    | 'reembolsoTotal';
+    | 'reembolsoTotal'
+    | '';
 }
