@@ -1,0 +1,27 @@
+.sidenav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Evita que el contenedor interfiera con el diseño */
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+.menu-button {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button mat-icon {
+  font-size: 24px;
+  color: #333;
+}

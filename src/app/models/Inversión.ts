@@ -11,8 +11,8 @@ export interface Inversion {
   tasa: number;
   rendimiento: number;
   instruccionVencimiento:
-    | 'reinvertirGanancia'
-    | 'reinvertirInversion'
-    | 'reembolsoTotal'
+    | 'Reinvertir ganancia'
+    | 'Reinvertir inversion'
+    | 'Reembolso total'
     | '';
 }

@@ -1,7 +1,7 @@
 import { Inversion } from '../../models/Inversión';
 import { InversionService } from '../../services/inversion.service';
 
-export abstract class TraerInversion {
+export class TraerInversion {
   protected inversionActual!: Inversion | null;
 
   protected suscribirseAInversion(servicioInversiones: InversionService) {

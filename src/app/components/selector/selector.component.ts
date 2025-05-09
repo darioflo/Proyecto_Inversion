@@ -64,26 +64,29 @@ export class SelectorComponent extends TraerInversion implements OnInit {
       this.instruccionSeleccionada = opcionSeleccionada.value;
 
       switch (this.instruccionSeleccionada) {
-        case 'reinvertirGanancia':
+        case 'Reinvertir ganancia':
           this.mostrarResultados = true;
           this.reinvertirInversionGanancia(
             this.inversionActual?.monto,
             this.inversionActual?.rendimiento
           );
+          this.inversionActual.instruccionVencimiento = 'Reinvertir ganancia';
           break;
-        case 'reinvertirInversion':
+        case 'Reinvertir inversion':
           this.mostrarResultados = true;
           this.reinvertirInversion(
             this.inversionActual.monto,
             this.inversionActual.rendimiento
           );
+          this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
           break;
-        case 'reembolsoTotal':
+        case 'eembolso total':
           (this.mostrarResultados = true),
             this.reembolsarTodo(
               this.inversionActual.monto,
               this.inversionActual.rendimiento
             );
+          this.inversionActual.instruccionVencimiento = 'Reembolso total';
           break;
         default:
           this.mostrarResultados = false;

@@ -23,9 +23,9 @@ export class ListaComponent extends TraerInversion implements OnInit {
   ubicacion = inject(Location);
 
   formulario = new FormGroup({
-    monto: new FormControl<number | null>(null, [
+    monto: new FormControl<number | null>(1000, [
       Validators.required,
-      Validators.min(1),
+      Validators.min(1000),
     ]),
     plazo: new FormControl<number>(1, [Validators.required, Validators.min(1)]),
   });

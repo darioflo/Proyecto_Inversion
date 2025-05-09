@@ -14,6 +14,7 @@ export class AnuncioComponent extends TraerInversion implements OnInit {
   router = inject(Router);
   ngOnInit(): void {
     this.suscribirseAInversion(this.servicioInversion);
+    console.log(this.inversionActual);
   }
 
   irAlHome() {

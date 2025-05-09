@@ -79,7 +79,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reinvertirGanancia',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-002',
@@ -90,7 +90,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reinvertirGanancia',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-003',
@@ -101,7 +101,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reinvertirGanancia',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-004',
@@ -112,7 +112,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reembolsoTotal',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-005',
@@ -123,7 +123,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reembolsoTotal',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-006',
@@ -134,7 +134,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reembolsoTotal',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-007',
@@ -145,7 +145,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reinvertirInversion',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-008',
@@ -156,7 +156,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reinvertirInversion',
+        instruccionVencimiento: '',
       },
       {
         idInversion: 'Inversion-009',
@@ -167,7 +167,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
-        instruccionVencimiento: 'reinvertirInversion',
+        instruccionVencimiento: '',
       },
     ];
     return { inversiones, clientes };
