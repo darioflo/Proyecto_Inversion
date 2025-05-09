@@ -7,7 +7,7 @@ export class TraerInversion {
   protected suscribirseAInversion(servicioInversiones: InversionService) {
     servicioInversiones.inversionActual$.subscribe({
       next: (data) => (this.inversionActual = data),
-      error: (error) => console.log(error),
+      error: (error) => console.log('Error:', error),
     });
   }
 }
