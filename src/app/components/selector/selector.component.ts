@@ -1,12 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
-import { Inversion } from '../../models/Inversión';
 import { Location, NgIf } from '@angular/common';
 import { TraerInversion } from '../../core/utils/base.component';
+import { Router } from '@angular/router';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-selector',
-  imports: [NgIf],
+  imports: [NgIf, ReactiveFormsModule],
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.css',
 })
@@ -15,6 +21,10 @@ export class SelectorComponent extends TraerInversion implements OnInit {
   mostrarResultados: boolean = false;
   ubicacion = inject(Location);
   servicioInversion = inject(InversionService);
+  router = inject(Router);
+  formulario = new FormGroup({
+    instruccion: new FormControl<string>('', Validators.required),
+  });
 
   ngOnInit(): void {
     this.suscribirseAInversion(this.servicioInversion);
@@ -82,7 +92,17 @@ export class SelectorComponent extends TraerInversion implements OnInit {
     }
   }
 
-  finalizarCompra() {}
+  finalizarCompra(evento: Event) {
+    evento.preventDefault();
+    if (this.formulario.valid) {
+      this.router.navigate([
+        `vistaTerminada/${this.inversionActual?.idInversion}`,
+      ]);
+      console.log(this.formulario.value);
+    } else {
+      window.alert('Formulario inválido');
+    }
+  }
   regresar() {
     this.ubicacion.back();
   }

@@ -5,6 +5,7 @@ import { VistaResumenComponent } from './routes/vista-resumen/vista-resumen.comp
 import { inversionGuard } from './core/guards/inversion.guard';
 import { SelectorComponent } from './components/selector/selector.component';
 import { VistaInstruccionComponent } from './routes/vista-instruccion/vista-instruccion.component';
+import { VistaTerminadaComponent } from './routes/vista-terminada/vista-terminada.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +23,11 @@ export const routes: Routes = [
   {
     path: 'vistaInstruccion/:id',
     component: VistaInstruccionComponent,
+    canActivate: [inversionGuard],
+  },
+  {
+    path: 'vistaTerminada/:id',
+    component: VistaTerminadaComponent,
     canActivate: [inversionGuard],
   },
 ];

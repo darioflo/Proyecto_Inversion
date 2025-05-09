@@ -1,7 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListaComponent } from '../../components/lista/lista.component';
-import { ActivatedRoute } from '@angular/router';
-import { InversionService } from '../../services/inversion.service';
+import { ParametrosDeVista } from '../../core/utils/base.vistas';
 
 @Component({
   selector: 'app-vista-seleccion',
@@ -9,12 +8,11 @@ import { InversionService } from '../../services/inversion.service';
   templateUrl: './vista-seleccion.component.html',
   styleUrl: './vista-seleccion.component.css',
 })
-export class VistaSeleccionComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  idPage: string | null = '';
-
+export class VistaSeleccionComponent
+  extends ParametrosDeVista
+  implements OnInit
+{
   ngOnInit(): void {
-    this.idPage = this.route.snapshot.paramMap.get('id');
-    console.log('ID de la página:', this.idPage);
+    this.obtenerIDPagina();
   }
 }

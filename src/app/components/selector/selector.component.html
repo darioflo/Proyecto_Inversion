@@ -1,13 +1,18 @@
 <div class="resumen-contenedor">
   <h2 class="titulo-resumen">Instrucción de Vencimiento</h2>
 
-  <form class="formulario">
+  <form
+    class="formulario"
+    (submit)="finalizarCompra($event)"
+    [formGroup]="formulario"
+  >
     <div class="dato">
       <label for="instruccion" class="label">Selecciona una instrucción:</label>
       <select
         id="instruccion"
         class="valor"
         (change)="cambiodeSeleccion($event)"
+        formControlName="instruccion"
       >
         <option value="">Escoja una opción</option>
         <option value="reinvertirGanancia">
@@ -38,7 +43,7 @@
     </div>
 
     <div class="botones">
-      <button type="button" class="continuar" (click)="finalizarCompra()">
+      <button type="submit" class="continuar" [disabled]="formulario.invalid">
         Finalizar Compra
       </button>
       <button type="button" class="continuar" (click)="regresar()">

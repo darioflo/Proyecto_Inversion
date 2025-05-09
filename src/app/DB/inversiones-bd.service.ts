@@ -41,7 +41,7 @@ export class InversionesBDService implements InMemoryDbService {
       {
         idCuenta: 'CUENTA-002',
         idCliente: 'Cliente-002',
-        monto: 5000,
+        monto: 15000,
         contrato: contratos[2],
       },
     ];

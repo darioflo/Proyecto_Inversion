@@ -1,9 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { InversionService } from '../../services/inversion.service';
-import { Inversion } from '../../models/Inversión';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ResumenComponent } from '../../components/resumen/resumen.component';
+import { ParametrosDeVista } from '../../core/utils/base.vistas';
 
 @Component({
   selector: 'app-vista-resumen',
@@ -11,12 +8,8 @@ import { ResumenComponent } from '../../components/resumen/resumen.component';
   templateUrl: './vista-resumen.component.html',
   styleUrl: './vista-resumen.component.css',
 })
-export class VistaResumenComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  idPage: string | null = '';
-
+export class VistaResumenComponent extends ParametrosDeVista implements OnInit {
   ngOnInit(): void {
-    this.idPage = this.route.snapshot.paramMap.get('id');
-    console.log('ID de la página:', this.idPage);
+    this.obtenerIDPagina();
   }
 }
