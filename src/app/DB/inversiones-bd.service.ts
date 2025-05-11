@@ -48,22 +48,22 @@ export class InversionesBDService implements InMemoryDbService {
     const clientes: Cliente[] = [
       {
         idCliente: 'Cliente-001',
-        nombre: 'Darío',
-        apellidos: 'Fernandez La O',
+        nombre: 'X',
+        apellidos: 'YZ',
         direccion: 'CDMX',
         cuenta: cuentas[0],
       },
       {
         idCliente: 'Cliente-002',
-        nombre: 'Irving Ariel',
-        apellidos: 'Díaz Lago',
+        nombre: 'A',
+        apellidos: 'BC',
         direccion: 'CDMX',
         cuenta: cuentas[1],
       },
       {
         idCliente: 'Cliente-003',
-        nombre: 'Yissel',
-        apellidos: 'Arce Padrón',
+        nombre: 'I',
+        apellidos: 'JK',
         direccion: 'CDMX',
         cuenta: cuentas[2],
       },
