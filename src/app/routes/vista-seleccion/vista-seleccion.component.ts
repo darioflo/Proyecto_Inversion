@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ListaComponent } from '../../components/lista/lista.component';
 import { ParametrosDeVista } from '../../core/utils/base.vistas';
+import { MontoPlazoComponent } from '../../components/monto-plazo/monto-plazo.component';
 
 @Component({
   selector: 'app-vista-seleccion',
-  imports: [ListaComponent],
+  imports: [MontoPlazoComponent],
   templateUrl: './vista-seleccion.component.html',
   styleUrl: './vista-seleccion.component.css',
 })

@@ -4,12 +4,15 @@ import { InversionService } from '../../services/inversion.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-anuncio',
+  selector: 'app-comprar-inversion',
   imports: [],
-  templateUrl: './anuncio.component.html',
-  styleUrl: './anuncio.component.css',
+  templateUrl: './comprar-inversion.component.html',
+  styleUrl: './comprar-inversion.component.css',
 })
-export class AnuncioComponent extends TraerInversion implements OnInit {
+export class ComprarInversionComponent
+  extends TraerInversion
+  implements OnInit
+{
   servicioInversion = inject(InversionService);
   router = inject(Router);
   ngOnInit(): void {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ParametrosDeVista } from '../../core/utils/base.vistas';
-import { AnuncioComponent } from '../../components/anuncio/anuncio.component';
+import { ComprarInversionComponent } from '../../components/comprar-inversion/comprar-inversion.component';
 
 @Component({
   selector: 'app-vista-terminada',
-  imports: [AnuncioComponent],
+  imports: [ComprarInversionComponent],
   templateUrl: './vista-terminada.component.html',
   styleUrl: './vista-terminada.component.css',
 })

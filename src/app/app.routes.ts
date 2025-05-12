@@ -3,7 +3,6 @@ import { HomeComponent } from './routes/home/home.component';
 import { VistaSeleccionComponent } from './routes/vista-seleccion/vista-seleccion.component';
 import { VistaResumenComponent } from './routes/vista-resumen/vista-resumen.component';
 import { inversionGuard } from './core/guards/inversion.guard';
-import { SelectorComponent } from './components/selector/selector.component';
 import { VistaInstruccionComponent } from './routes/vista-instruccion/vista-instruccion.component';
 import { VistaTerminadaComponent } from './routes/vista-terminada/vista-terminada.component';
 

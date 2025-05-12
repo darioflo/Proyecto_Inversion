@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ResumenComponent } from '../../components/resumen/resumen.component';
 import { ParametrosDeVista } from '../../core/utils/base.vistas';
+import { CatalogoInversionComponent } from '../../components/catalogo-inversion/catalogo-inversion.component';
 
 @Component({
   selector: 'app-vista-resumen',
-  imports: [ResumenComponent],
+  imports: [CatalogoInversionComponent],
   templateUrl: './vista-resumen.component.html',
   styleUrl: './vista-resumen.component.css',
 })

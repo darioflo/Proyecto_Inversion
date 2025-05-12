@@ -7,17 +7,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { InversionService } from '../../services/inversion.service';
-import { Inversion } from '../../models/Inversión';
 import { Location } from '@angular/common';
 import { TraerInversion } from '../../core/utils/base.component';
 
 @Component({
-  selector: 'app-lista',
+  selector: 'app-monto-plazo',
   imports: [ReactiveFormsModule],
-  templateUrl: './lista.component.html',
-  styleUrl: './lista.component.css',
+  templateUrl: './monto-plazo.component.html',
+  styleUrl: './monto-plazo.component.css',
 })
-export class ListaComponent extends TraerInversion implements OnInit {
+export class MontoPlazoComponent extends TraerInversion implements OnInit {
   router = inject(Router);
   servicioInversion = inject(InversionService);
   ubicacion = inject(Location);
@@ -27,7 +26,10 @@ export class ListaComponent extends TraerInversion implements OnInit {
       Validators.required,
       Validators.min(1000),
     ]),
-    plazo: new FormControl<number>(1, [Validators.required, Validators.min(1)]),
+    plazo: new FormControl<number>(28, [
+      Validators.required,
+      Validators.min(1),
+    ]),
   });
 
   ngOnInit(): void {
@@ -62,6 +64,8 @@ export class ListaComponent extends TraerInversion implements OnInit {
           'Inversión Actualizada',
           this.inversionActual
         );
+      } else {
+        window.alert('No se puede enviar una cantidad superior al monto.');
       }
     } else {
       console.log('Formulario inválido');

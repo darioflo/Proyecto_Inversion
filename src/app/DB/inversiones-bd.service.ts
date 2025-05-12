@@ -20,8 +20,20 @@ export class InversionesBDService implements InMemoryDbService {
         tipoContrato: 'Crédito',
       },
       {
-        idContrato: 'Contrato-002',
+        idContrato: 'Contrato-003',
+        tipoContrato: 'Cuenta de ahorro',
+      },
+      {
+        idContrato: 'Contrato-004',
+        tipoContrato: 'Crédito',
+      },
+      {
+        idContrato: 'Contrato-005',
         tipoContrato: 'Servicios financieros',
+      },
+      {
+        idContrato: 'Contrato-006',
+        tipoContrato: 'Cuenta de ahorro',
       },
     ];
 
@@ -34,38 +46,56 @@ export class InversionesBDService implements InMemoryDbService {
       },
       {
         idCuenta: 'CUENTA-002',
-        idCliente: 'Cliente-002',
-        monto: 25000,
+        idCliente: 'Cliente-001',
+        monto: 8000,
         contrato: contratos[1],
       },
       {
-        idCuenta: 'CUENTA-002',
+        idCuenta: 'CUENTA-003',
         idCliente: 'Cliente-002',
-        monto: 15000,
+        monto: 18000,
         contrato: contratos[2],
+      },
+      {
+        idCuenta: 'CUENTA-004',
+        idCliente: 'Cliente-002',
+        monto: 25000,
+        contrato: contratos[3],
+      },
+      {
+        idCuenta: 'CUENTA-005',
+        idCliente: 'Cliente-003',
+        monto: 15000,
+        contrato: contratos[4],
+      },
+      {
+        idCuenta: 'CUENTA-005',
+        idCliente: 'Cliente-003',
+        monto: 12000,
+        contrato: contratos[5],
       },
     ];
     const clientes: Cliente[] = [
       {
         idCliente: 'Cliente-001',
-        nombre: 'X',
-        apellidos: 'YZ',
+        nombre: 'Juan',
+        apellidos: 'Cuesta',
         direccion: 'CDMX',
-        cuenta: cuentas[0],
+        cuenta: [cuentas[0], cuentas[1]],
       },
       {
         idCliente: 'Cliente-002',
-        nombre: 'A',
-        apellidos: 'BC',
+        nombre: 'Emilio',
+        apellidos: 'Delgado',
         direccion: 'CDMX',
-        cuenta: cuentas[1],
+        cuenta: [cuentas[2], cuentas[3]],
       },
       {
         idCliente: 'Cliente-003',
-        nombre: 'I',
-        apellidos: 'JK',
+        nombre: 'Paloma',
+        apellidos: 'Hurtado',
         direccion: 'CDMX',
-        cuenta: cuentas[2],
+        cuenta: [cuentas[4], cuentas[5]],
       },
     ];
 

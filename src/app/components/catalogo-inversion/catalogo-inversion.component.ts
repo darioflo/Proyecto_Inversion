@@ -1,17 +1,19 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
-import { Inversion } from '../../models/Inversión';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TraerInversion } from '../../core/utils/base.component';
 
 @Component({
-  selector: 'app-resumen',
+  selector: 'app-catalogo-inversion',
   imports: [],
-  templateUrl: './resumen.component.html',
-  styleUrl: './resumen.component.css',
+  templateUrl: './catalogo-inversion.component.html',
+  styleUrl: './catalogo-inversion.component.css',
 })
-export class ResumenComponent extends TraerInversion implements OnInit {
+export class CatalogoInversionComponent
+  extends TraerInversion
+  implements OnInit
+{
   servicioInversion = inject(InversionService);
   ubicacion = inject(Location);
   router = inject(Router);

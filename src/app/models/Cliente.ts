@@ -5,5 +5,5 @@ export interface Cliente {
   nombre: string;
   apellidos: string;
   direccion: string;
-  cuenta: Cuenta;
+  cuenta: Cuenta[];
 }

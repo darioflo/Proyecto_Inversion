@@ -11,12 +11,15 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-selector',
+  selector: 'app-instruccion-vencimiento',
   imports: [NgIf, ReactiveFormsModule],
-  templateUrl: './selector.component.html',
-  styleUrl: './selector.component.css',
+  templateUrl: './instruccion-vencimiento.component.html',
+  styleUrl: './instruccion-vencimiento.component.css',
 })
-export class SelectorComponent extends TraerInversion implements OnInit {
+export class InstruccionVencimientoComponent
+  extends TraerInversion
+  implements OnInit
+{
   instruccionSeleccionada: string = '';
   mostrarResultados: boolean = false;
   ubicacion = inject(Location);
@@ -80,7 +83,7 @@ export class SelectorComponent extends TraerInversion implements OnInit {
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
           break;
-        case 'eembolso total':
+        case 'Reembolso total':
           (this.mostrarResultados = true),
             this.reembolsarTodo(
               this.inversionActual.monto,
