@@ -3,7 +3,6 @@ import { Cliente } from '../../models/Cliente';
 import { Inversion } from '../../models/Inversión';
 import { InversionService } from '../../services/inversion.service';
 import { ClienteService } from '../../services/cliente.service';
-import { Cuenta } from '../../models/Cuenta';
 
 export class ObtenerClienteAutenticado {
   clienteAutenticado: Cliente | null = null;

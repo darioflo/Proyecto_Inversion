@@ -17,6 +17,10 @@
   margin-bottom: 1rem;
 }
 
+.titulo-anuncio {
+  color: var(--color-extra);
+}
+
 .detalle {
   display: flex;
   flex-direction: column;

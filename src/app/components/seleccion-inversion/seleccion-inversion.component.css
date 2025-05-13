@@ -52,6 +52,10 @@
   transform: translateY(-5px);
 }
 
+.inversion h3 {
+  color: var(--segundo-color);
+}
+
 .inversion p {
   font-size: 1.25rem;
   font-weight: 500;
