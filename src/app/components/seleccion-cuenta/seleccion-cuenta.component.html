@@ -1,0 +1,19 @@
+<div class="seleccion-cuenta-contenedor">
+  <h2 class="titulo">Selecciona una cuenta</h2>
+  <p class="mensaje">
+    Hola {{ clienteAutenticado?.nombre }}
+    {{ clienteAutenticado?.apellido_paterno }}, por favor selecciona la cuenta
+    que deseas utilizar:
+  </p>
+
+  <div class="lista-cuentas">
+    <div
+      class="cuenta"
+      *ngFor="let cuenta of clienteAutenticado?.cuenta"
+      [routerLink]="['/vistaInversion', cuenta.idCuenta]"
+    >
+      <p class="id-cuenta">ID de la cuenta: {{ cuenta.idCuenta }}</p>
+      <p class="saldo-cuenta">Saldo: ${{ cuenta.saldo }}</p>
+    </div>
+  </div>
+</div>

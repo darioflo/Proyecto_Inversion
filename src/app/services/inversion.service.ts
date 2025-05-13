@@ -7,7 +7,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InversionService {
-  private datosInversion: Partial<Inversion> = {};
   private http = inject(HttpClient);
   private inversionActual = new BehaviorSubject<Inversion | null>(null);
   inversionActual$ = this.inversionActual.asObservable();
@@ -22,6 +21,7 @@ export class InversionService {
   calcularRendimiento(monto: number, tasa: number): number {
     return monto * tasa;
   }
+
   obtenerInversiones(): Observable<Inversion[]> {
     return this.http.get<Inversion[]>('/api/inversiones');
   }

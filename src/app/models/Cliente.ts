@@ -3,7 +3,8 @@ import { Cuenta } from './Cuenta';
 export interface Cliente {
   idCliente: string;
   nombre: string;
-  apellidos: string;
+  apellido_paterno: string;
+  apellido_materno: string;
   direccion: string;
   cuenta: Cuenta[];
 }

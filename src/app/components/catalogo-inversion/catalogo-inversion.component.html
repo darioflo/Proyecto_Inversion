@@ -7,12 +7,12 @@
   </div>
   <div class="dato">
     <span class="label">Apellidos:</span>
-    <span class="valor">{{ inversionActual?.cliente?.apellidos }}</span>
+    <span class="valor">{{ inversionActual?.cliente?.apellido_paterno }}</span>
   </div>
   <div class="dato">
     <span class="label">Monto disponible en cuenta:</span>
     <span class="valor" data-color="verde"
-      ><b>${{ inversionActual?.cuenta?.monto }}</b></span
+      ><b>${{ inversionActual?.cuenta?.saldo }}</b></span
     >
   </div>
   <div class="dato">
@@ -26,9 +26,9 @@
     }}</span>
   </div>
   <div class="dato">
-    <span class="label">Monto invertido:</span>
+    <span class="label">Saldo invertido:</span>
     <span class="valor" data-color="verde"
-      ><b>${{ inversionActual?.monto }}</b></span
+      ><b>${{ inversionActual?.saldo_inicial }}</b></span
     >
   </div>
   <div class="dato">

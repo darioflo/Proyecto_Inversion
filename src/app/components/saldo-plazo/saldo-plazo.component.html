@@ -3,25 +3,25 @@
     <h3 class="nombre-inversion">{{ inversionActual?.nombre }}</h3>
     <p class="nombre-cliente">
       {{ inversionActual?.cliente?.nombre }}
-      {{ inversionActual?.cliente?.apellidos }}
+      {{ inversionActual?.cliente?.apellido_paterno }}
     </p>
     <p class="monto-disponible">
-      Monto disponible: ${{ inversionActual?.cuenta?.monto }}
+      Monto disponible: ${{ inversionActual?.cuenta?.saldo }}
     </p>
   </div>
 
   <form
-    (submit)="enviarMontoPlazo($event)"
+    (submit)="enviarSaldoPlazo($event)"
     [formGroup]="formulario"
     class="formulario"
   >
     <div class="grupo-formulario">
-      <label for="monto" class="etiqueta">Monto a invertir:</label>
+      <label for="saldo" class="etiqueta">Monto a invertir:</label>
       <input
         type="number"
-        id="monto"
-        name="monto"
-        formControlName="monto"
+        id="saldo"
+        name="saldo"
+        formControlName="saldo"
         required
         min="1000"
         max="1000000000000000000"

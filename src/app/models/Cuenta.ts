@@ -3,6 +3,6 @@ import { Contrato } from './Contrato';
 export interface Cuenta {
   idCuenta: string;
   idCliente: string;
-  monto: number;
+  saldo: number;
   contrato: Contrato;
 }

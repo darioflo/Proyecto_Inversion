@@ -1,19 +1,5 @@
 <section
   class="home-seccion flex justify-center items-center gap-16 w-screen h-screen flex-col flex-wrap"
 >
-  <h1 class="text-7xl text-center titulo">
-    Hola {{ clienteAutenticado?.nombre }} te damos la bienvenida a tus
-    inversiones:
-  </h1>
-  <div class="contenedor-inversiones">
-    <div class="inversiones" *ngFor="let inversion of inversionesDeCliente">
-      <div
-        class="inversion"
-        [routerLink]="['/vistaSeleccion', inversion.idInversion]"
-        (click)="obtenerInversionActual(inversion.idInversion)"
-      >
-        <p>{{ inversion.nombre }}</p>
-      </div>
-    </div>
-  </div>
+  <app-seleccion-cuenta></app-seleccion-cuenta>
 </section>

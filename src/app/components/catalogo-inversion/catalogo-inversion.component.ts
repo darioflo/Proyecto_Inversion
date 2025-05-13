@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { TraerInversion } from '../../core/utils/base.component';
+import { TraerInversion } from '../../core/utils/obtener_inversion_actual';
 
 @Component({
   selector: 'app-catalogo-inversion',
@@ -25,8 +25,8 @@ export class CatalogoInversionComponent
   regresar() {
     this.servicioInversion.inversionActual$.subscribe({
       next: (inversion) => {
-        if (inversion?.cuenta && inversion.monto) {
-          inversion.cuenta.monto += inversion.monto;
+        if (inversion?.cuenta && inversion.saldo_inicial) {
+          inversion.cuenta.saldo += inversion.saldo_inicial;
         }
       },
       error: (error) => {
@@ -37,7 +37,7 @@ export class CatalogoInversionComponent
   }
   continuar() {
     this.router.navigate([
-      `/vistaInstruccion/${this.inversionActual?.idInversion}`,
+      `/vistaInstruccion/${this.inversionActual?.cuenta.idCuenta}/${this.inversionActual?.idInversion}`,
     ]);
   }
 }

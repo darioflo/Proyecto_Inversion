@@ -8,24 +8,28 @@
       <p class="label">Cliente:</p>
       <p class="valor" id="cliente">
         {{ inversionActual?.cliente?.nombre }}
-        {{ inversionActual?.cliente?.apellidos }}
+        {{ inversionActual?.cliente?.apellido_paterno }}
       </p>
     </div>
     <div class="fila">
       <p class="label">Monto invertido:</p>
-      <p class="valor">${{ inversionActual?.monto }}</p>
+      <p class="valor">${{ inversionActual?.saldo_inicial }}</p>
     </div>
     <div class="fila">
       <p class="label">Plazo:</p>
-      <p class="valor">{{ inversionActual?.plazo }} años</p>
+      <p class="valor">{{ inversionActual?.plazo }} días</p>
     </div>
     <div class="fila">
       <p class="label">Tasa ofrecida:</p>
       <p class="valor">{{ inversionActual?.tasa }}%</p>
     </div>
     <div class="fila">
-      <p class="label">Rendimiento esperado:</p>
+      <p class="label">Rendimiento anual:</p>
       <p class="valor">${{ inversionActual?.rendimiento }}</p>
+    </div>
+    <div class="fila">
+      <p class="label">Saldo al término:</p>
+      <p class="valor">${{ inversionActual?.saldo_al_termino }}</p>
     </div>
     <div class="fila">
       <p class="label">Instrucción de vencimiento:</p>
@@ -35,7 +39,7 @@
       <p class="label">Cuenta asociada:</p>
       <p class="valor" id="cuenta">
         ID: {{ inversionActual?.cuenta?.idCuenta }}<br />
-        Saldo: ${{ inversionActual?.cuenta?.monto }}
+        Saldo en cuenta: ${{ inversionActual?.cuenta?.saldo }}
       </p>
     </div>
     <button class="boton-continuar" (click)="irAlHome()">Regresar</button>

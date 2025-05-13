@@ -5,27 +5,33 @@ import { VistaResumenComponent } from './routes/vista-resumen/vista-resumen.comp
 import { inversionGuard } from './core/guards/inversion.guard';
 import { VistaInstruccionComponent } from './routes/vista-instruccion/vista-instruccion.component';
 import { VistaTerminadaComponent } from './routes/vista-terminada/vista-terminada.component';
+import { SeleccionInversionComponent } from './components/seleccion-inversion/seleccion-inversion.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   {
-    path: 'vistaSeleccion/:id',
+    path: 'vistaInversion/:idCuenta',
+    component: SeleccionInversionComponent,
+    canActivate: [inversionGuard],
+  },
+  {
+    path: 'vistaSeleccion/:idCuenta/:idInversion',
     component: VistaSeleccionComponent,
     canActivate: [inversionGuard],
   },
   {
-    path: 'vistaResumen/:id',
+    path: 'vistaResumen/:idCuenta/:idInversion',
     component: VistaResumenComponent,
     canActivate: [inversionGuard],
   },
   {
-    path: 'vistaInstruccion/:id',
+    path: 'vistaInstruccion/:idCuenta/:idInversion',
     component: VistaInstruccionComponent,
     canActivate: [inversionGuard],
   },
   {
-    path: 'vistaTerminada/:id',
+    path: 'vistaTerminada/:idCuenta/:idInversion',
     component: VistaTerminadaComponent,
     canActivate: [inversionGuard],
   },

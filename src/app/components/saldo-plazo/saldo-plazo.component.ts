@@ -8,21 +8,21 @@ import {
 } from '@angular/forms';
 import { InversionService } from '../../services/inversion.service';
 import { Location } from '@angular/common';
-import { TraerInversion } from '../../core/utils/base.component';
+import { TraerInversion } from '../../core/utils/obtener_inversion_actual';
 
 @Component({
-  selector: 'app-monto-plazo',
+  selector: 'app-saldo-plazo',
   imports: [ReactiveFormsModule],
-  templateUrl: './monto-plazo.component.html',
-  styleUrl: './monto-plazo.component.css',
+  templateUrl: './saldo-plazo.component.html',
+  styleUrl: './saldo-plazo.component.css',
 })
-export class MontoPlazoComponent extends TraerInversion implements OnInit {
+export class saldoPlazoComponent extends TraerInversion implements OnInit {
   router = inject(Router);
   servicioInversion = inject(InversionService);
   ubicacion = inject(Location);
 
   formulario = new FormGroup({
-    monto: new FormControl<number | null>(1000, [
+    saldo: new FormControl<number | null>(1000, [
       Validators.required,
       Validators.min(1000),
     ]),
@@ -36,27 +36,29 @@ export class MontoPlazoComponent extends TraerInversion implements OnInit {
     this.suscribirseAInversion(this.servicioInversion);
   }
 
-  enviarMontoPlazo(evento: Event) {
+  enviarSaldoPlazo(evento: Event) {
     evento.preventDefault();
     if (this.formulario.valid && this.inversionActual) {
-      const { monto, plazo } = this.formulario.value;
-      (this.inversionActual.monto = monto!),
+      const { saldo, plazo } = this.formulario.value;
+      (this.inversionActual.saldo_inicial = saldo!),
         (this.inversionActual.plazo = plazo!);
 
-      if (this.inversionActual.monto <= this.inversionActual.cuenta.monto) {
-        this.inversionActual.cuenta.monto =
-          this.inversionActual.cuenta.monto - monto!;
+      if (
+        this.inversionActual.saldo_inicial <= this.inversionActual.cuenta.saldo
+      ) {
+        this.inversionActual.cuenta.saldo =
+          this.inversionActual.cuenta.saldo - saldo!;
 
-        this.inversionActual.tasa = this.servicioInversion.calcularTasa(monto!);
+        this.inversionActual.tasa = this.servicioInversion.calcularTasa(saldo!);
 
         this.inversionActual.rendimiento =
           this.servicioInversion.calcularRendimiento(
-            this.inversionActual.monto,
+            this.inversionActual.saldo_inicial,
             this.inversionActual.tasa
           );
 
         this.router.navigate([
-          `vistaResumen/${this.inversionActual.idInversion}`,
+          `vistaResumen/${this.inversionActual.cuenta.idCuenta}/${this.inversionActual.idInversion}`,
         ]);
         console.log(
           'Datos enviados: ',
@@ -65,11 +67,15 @@ export class MontoPlazoComponent extends TraerInversion implements OnInit {
           this.inversionActual
         );
       } else {
-        window.alert('No se puede enviar una cantidad superior al monto.');
+        window.alert(
+          'Formulario inválido: No se puede enviar una cantidad superior al saldo.'
+        );
       }
     } else {
       console.log('Formulario inválido');
-      window.alert('Formulario inválido');
+      window.alert(
+        'Formulario inválido: El monto mínimo para invertir es de 1000 mxn'
+      );
     }
   }
 

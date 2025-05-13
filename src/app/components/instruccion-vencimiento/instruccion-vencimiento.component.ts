@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
-import { Location, NgIf } from '@angular/common';
-import { TraerInversion } from '../../core/utils/base.component';
+import { Location } from '@angular/common';
+import { TraerInversion } from '../../core/utils/obtener_inversion_actual';
 import { Router } from '@angular/router';
 import {
   FormControl,
@@ -12,7 +12,7 @@ import {
 
 @Component({
   selector: 'app-instruccion-vencimiento',
-  imports: [NgIf, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './instruccion-vencimiento.component.html',
   styleUrl: './instruccion-vencimiento.component.css',
 })
@@ -21,7 +21,6 @@ export class InstruccionVencimientoComponent
   implements OnInit
 {
   instruccionSeleccionada: string = '';
-  mostrarResultados: boolean = false;
   ubicacion = inject(Location);
   servicioInversion = inject(InversionService);
   router = inject(Router);
@@ -33,80 +32,77 @@ export class InstruccionVencimientoComponent
     this.suscribirseAInversion(this.servicioInversion);
   }
 
-  reinvertirInversionGanancia(monto: number, rendimiento: number) {
+  reinvertirInversionGanancia(saldoInvertido: number, rendimiento: number) {
     if (this.inversionActual) {
-      this.inversionActual.monto = monto + rendimiento;
-      console.log('Saldo inversion', this.inversionActual.monto);
+      this.inversionActual.saldo_al_termino = saldoInvertido + rendimiento;
+      console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
+      console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
+      console.log('Saldo cuenta: ', this.inversionActual.cuenta.saldo);
     }
     return 0;
   }
 
-  reinvertirInversion(monto: number, rendimiento: number) {
+  reinvertirInversion(saldoInvertido: number, rendimiento: number) {
     if (this.inversionActual) {
-      this.inversionActual.monto += monto;
-      this.inversionActual.cuenta.monto += rendimiento;
-      console.log(
-        'Saldo inversion',
-        this.inversionActual.monto,
-        'Saldo cuenta:',
-        this.inversionActual.cuenta.monto
-      );
+      this.inversionActual.saldo_al_termino += saldoInvertido + rendimiento;
+      console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
+      console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
+      console.log('Saldo cuenta: ', this.inversionActual.cuenta.saldo);
     }
   }
 
-  reembolsarTodo(monto: number, rendimiento: number) {
+  reembolsarTodo(saldoInvertido: number, rendimiento: number) {
     if (this.inversionActual) {
-      this.inversionActual.cuenta.monto += monto + rendimiento;
-      console.log('Saldo cuenta', this.inversionActual.monto);
+      this.inversionActual.saldo_al_termino += saldoInvertido + rendimiento;
+      console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
+      console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
+      console.log('Saldo cuenta: ', this.inversionActual.cuenta.saldo);
     }
   }
-
   cambiodeSeleccion(evento: Event) {
     if (this.inversionActual) {
       let opcionSeleccionada = evento.target as HTMLSelectElement;
       this.instruccionSeleccionada = opcionSeleccionada.value;
-
-      switch (this.instruccionSeleccionada) {
-        case 'Reinvertir ganancia':
-          this.mostrarResultados = true;
-          this.reinvertirInversionGanancia(
-            this.inversionActual?.monto,
-            this.inversionActual?.rendimiento
-          );
-          this.inversionActual.instruccionVencimiento = 'Reinvertir ganancia';
-          break;
-        case 'Reinvertir inversion':
-          this.mostrarResultados = true;
-          this.reinvertirInversion(
-            this.inversionActual.monto,
-            this.inversionActual.rendimiento
-          );
-          this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
-          break;
-        case 'Reembolso total':
-          (this.mostrarResultados = true),
-            this.reembolsarTodo(
-              this.inversionActual.monto,
-              this.inversionActual.rendimiento
-            );
-          this.inversionActual.instruccionVencimiento = 'Reembolso total';
-          break;
-        default:
-          this.mostrarResultados = false;
-          break;
-      }
     }
   }
 
   finalizarCompra(evento: Event) {
     evento.preventDefault();
-    if (this.formulario.valid) {
+    if (this.formulario.valid && this.inversionActual) {
+      console.log(this.formulario.valid, this.formulario.value);
+      switch (this.instruccionSeleccionada) {
+        case 'Reinvertir ganancia':
+          this.reinvertirInversionGanancia(
+            this.inversionActual?.saldo_inicial,
+            this.inversionActual?.rendimiento
+          );
+          this.inversionActual.instruccionVencimiento = 'Reinvertir ganancia';
+          break;
+        case 'Reinvertir inversion':
+          this.reinvertirInversion(
+            this.inversionActual.saldo_inicial,
+            this.inversionActual.rendimiento
+          );
+          this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
+          break;
+        case 'Reembolso total':
+          this.reembolsarTodo(
+            this.inversionActual.saldo_inicial,
+            this.inversionActual.rendimiento
+          );
+          this.inversionActual.instruccionVencimiento = 'Reembolso total';
+          break;
+        default:
+          break;
+      }
       this.router.navigate([
-        `vistaTerminada/${this.inversionActual?.idInversion}`,
+        `vistaTerminada/${this.inversionActual.cuenta.idCuenta}/${this.inversionActual?.idInversion}`,
       ]);
       console.log(this.formulario.value);
     } else {
-      window.alert('Formulario inválido');
+      alert(
+        'Formulario inválido: Debe seleccionar una opción antes de invertir'
+      );
     }
   }
   regresar() {

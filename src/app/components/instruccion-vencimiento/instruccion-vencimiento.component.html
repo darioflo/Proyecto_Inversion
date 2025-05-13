@@ -22,30 +22,8 @@
         <option value="Reembolso total">Reembolso Total</option>
       </select>
     </div>
-    <div class="resultados" *ngIf="mostrarResultados">
-      <div class="dato">
-        <p class="label">Saldo de inversión:</p>
-        <p class="resaltar">{{ inversionActual?.monto }}</p>
-      </div>
-      <div class="dato">
-        <p class="label">Saldo de cuenta:</p>
-        <p class="resaltar">{{ inversionActual?.cuenta?.monto }}</p>
-      </div>
-      <div class="dato">
-        <p class="label">Ganancia:</p>
-        <p class="resaltar">
-          {{
-            (inversionActual?.cuenta?.monto ?? 0) -
-              (inversionActual?.monto ?? 0)
-          }}
-        </p>
-      </div>
-    </div>
-
     <div class="botones">
-      <button type="submit" class="continuar" [disabled]="formulario.invalid">
-        Finalizar Compra
-      </button>
+      <button type="submit" class="continuar">Invertir</button>
       <button type="button" class="continuar" (click)="regresar()">
         Regresar
       </button>

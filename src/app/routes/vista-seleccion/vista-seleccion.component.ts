@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ParametrosDeVista } from '../../core/utils/base.vistas';
-import { MontoPlazoComponent } from '../../components/monto-plazo/monto-plazo.component';
+import { ParametrosDeVista } from '../../core/utils/obtener_parametro_ruta';
+import { saldoPlazoComponent } from '../../components/saldo-plazo/saldo-plazo.component';
 
 @Component({
   selector: 'app-vista-seleccion',
-  imports: [MontoPlazoComponent],
+  imports: [saldoPlazoComponent, saldoPlazoComponent],
   templateUrl: './vista-seleccion.component.html',
   styleUrl: './vista-seleccion.component.css',
 })

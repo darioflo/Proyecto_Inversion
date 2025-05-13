@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MontoPlazoComponent } from './monto-plazo.component';
+import { VistaInversionComponent } from './vista-inversion.component';
 
-describe('MontoPlazoComponent', () => {
-  let component: MontoPlazoComponent;
-  let fixture: ComponentFixture<MontoPlazoComponent>;
+describe('VistaInversionComponent', () => {
+  let component: VistaInversionComponent;
+  let fixture: ComponentFixture<VistaInversionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MontoPlazoComponent]
+      imports: [VistaInversionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MontoPlazoComponent);
+    fixture = TestBed.createComponent(VistaInversionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

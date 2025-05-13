@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TraerInversion } from '../../core/utils/base.component';
+import { TraerInversion } from '../../core/utils/obtener_inversion_actual';
 import { InversionService } from '../../services/inversion.service';
 import { Router } from '@angular/router';
 

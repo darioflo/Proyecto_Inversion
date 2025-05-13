@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ParametrosDeVista } from '../../core/utils/base.vistas';
+import { ParametrosDeVista } from '../../core/utils/obtener_parametro_ruta';
 import { CatalogoInversionComponent } from '../../components/catalogo-inversion/catalogo-inversion.component';
 
 @Component({

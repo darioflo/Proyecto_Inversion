@@ -1,4 +1,4 @@
-.home-seccion {
+.inversion-seccion {
   padding: 2.5rem;
   width: 100%;
   max-width: 1200px;
@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 640px) {
-  .home-seccion {
+  .inversion-seccion {
     padding: 2rem 1.5rem;
   }
 
