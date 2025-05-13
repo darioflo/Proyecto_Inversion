@@ -10,6 +10,8 @@ export class InversionService {
   private http = inject(HttpClient);
   private inversionActual = new BehaviorSubject<Inversion | null>(null);
   inversionActual$ = this.inversionActual.asObservable();
+  inversionesDisponibles: Inversion[] = [];
+  inversionesDelCliente: Inversion[] = [];
 
   calcularTasa(monto: number): number {
     if (monto < 5000) return 0.03;

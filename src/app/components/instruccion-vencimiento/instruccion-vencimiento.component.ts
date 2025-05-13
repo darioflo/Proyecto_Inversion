@@ -77,6 +77,13 @@ export class InstruccionVencimientoComponent
             this.inversionActual?.rendimiento
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir ganancia';
+          this.servicioInversion.inversionesDelCliente.push(
+            this.inversionActual
+          );
+          localStorage.setItem(
+            'inversionesDelCliente',
+            JSON.stringify(this.servicioInversion.inversionesDelCliente)
+          );
           break;
         case 'Reinvertir inversion':
           this.reinvertirInversion(
@@ -84,6 +91,13 @@ export class InstruccionVencimientoComponent
             this.inversionActual.rendimiento
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
+          this.servicioInversion.inversionesDelCliente.push(
+            this.inversionActual
+          );
+          localStorage.setItem(
+            'inversionesDelCliente',
+            JSON.stringify(this.servicioInversion.inversionesDelCliente)
+          );
           break;
         case 'Reembolso total':
           this.reembolsarTodo(
@@ -91,6 +105,13 @@ export class InstruccionVencimientoComponent
             this.inversionActual.rendimiento
           );
           this.inversionActual.instruccionVencimiento = 'Reembolso total';
+          this.servicioInversion.inversionesDelCliente.push(
+            this.inversionActual
+          );
+          localStorage.setItem(
+            'inversionesDelCliente',
+            JSON.stringify(this.servicioInversion.inversionesDelCliente)
+          );
           break;
         default:
           break;
@@ -98,7 +119,10 @@ export class InstruccionVencimientoComponent
       this.router.navigate([
         `vistaTerminada/${this.inversionActual?.cuenta?.idCuenta}/${this.inversionActual?.idInversion}`,
       ]);
-      console.log(this.formulario.value);
+      console.log(
+        this.formulario.value,
+        this.servicioInversion.inversionesDelCliente
+      );
     } else {
       alert(
         'Formulario inválido: Debe seleccionar una opción antes de invertir'

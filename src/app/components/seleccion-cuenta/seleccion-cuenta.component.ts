@@ -14,7 +14,6 @@ export class SeleccionCuentaComponent
   implements OnInit
 {
   ngOnInit(): void {
-    this.obtenerClienteAutenticado();
-    console.log(this.clienteAutenticado);
+    console.log(this.clienteServicio.clienteSeleccionado);
   }
 }

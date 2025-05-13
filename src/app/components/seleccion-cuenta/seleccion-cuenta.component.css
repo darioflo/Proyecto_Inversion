@@ -24,6 +24,7 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: center;
+  cursor: pointer;
 }
 
 .cuenta {
@@ -40,6 +41,7 @@
 .cuenta:hover {
   background-color: var(--segundo-color);
   transform: translateY(-5px);
+  color: var(--primer-color);
 }
 
 .id-cuenta {

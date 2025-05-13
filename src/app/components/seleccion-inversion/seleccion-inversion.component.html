@@ -3,7 +3,10 @@
     <h1 class="titulo">Catálogo de inversiones:</h1>
   </div>
   <div class="contenedor-inversiones">
-    <div class="inversiones" *ngFor="let inversion of inversionesDisponibles">
+    <div
+      class="inversiones"
+      *ngFor="let inversion of servicioInversiones.inversionesDisponibles"
+    >
       <div
         class="inversion"
         [routerLink]="[

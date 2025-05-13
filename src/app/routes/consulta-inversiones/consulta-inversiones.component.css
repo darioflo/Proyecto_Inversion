@@ -1,0 +1,58 @@
+/* Contenedor principal de la sección */
+.consulta-seccion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem;
+  background-color: var(--primer-color);
+  min-height: 100vh;
+}
+
+/* Estilo para el mensaje de anuncio */
+.anuncio {
+  text-align: center;
+  background-color: var(--segundo-color);
+  color: var(--primer-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+}
+
+.anuncio h2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--primer-color);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .consulta-seccion {
+    padding: 2rem;
+  }
+
+  .anuncio {
+    padding: 1.5rem;
+  }
+
+  .anuncio h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .consulta-seccion {
+    padding: 1.5rem;
+  }
+
+  .anuncio {
+    padding: 1rem;
+  }
+
+  .anuncio h2 {
+    font-size: 1.25rem;
+  }
+}

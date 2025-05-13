@@ -1,15 +1,15 @@
 <div class="seleccion-cuenta-contenedor">
   <h2 class="titulo">Selecciona una cuenta</h2>
   <p class="mensaje">
-    Hola {{ clienteAutenticado?.nombre }}
-    {{ clienteAutenticado?.apellido_paterno }}, por favor selecciona la cuenta
-    que deseas utilizar:
+    Hola <b>{{ clienteServicio.clienteSeleccionado?.nombre }} </b>
+    <b>{{ clienteServicio.clienteSeleccionado?.apellido_paterno }}</b
+    >, por favor selecciona la cuenta que deseas utilizar:
   </p>
 
   <div class="lista-cuentas">
     <div
       class="cuenta"
-      *ngFor="let cuenta of clienteAutenticado?.cuenta"
+      *ngFor="let cuenta of clienteServicio.clienteSeleccionado?.cuenta"
       [routerLink]="['/vistaInversion', cuenta.idCuenta]"
       (click)="obtenerCuentaActual(cuenta.idCuenta)"
     >

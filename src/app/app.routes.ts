@@ -6,6 +6,7 @@ import { inversionGuard } from './core/guards/inversion.guard';
 import { VistaInstruccionComponent } from './routes/vista-instruccion/vista-instruccion.component';
 import { VistaTerminadaComponent } from './routes/vista-terminada/vista-terminada.component';
 import { SeleccionInversionComponent } from './components/seleccion-inversion/seleccion-inversion.component';
+import { ConsultaInversionesComponent } from './routes/consulta-inversiones/consulta-inversiones.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,4 +36,10 @@ export const routes: Routes = [
     component: VistaTerminadaComponent,
     canActivate: [inversionGuard],
   },
+  {
+    path: 'consultaInversiones',
+    component: ConsultaInversionesComponent,
+    canActivate: [inversionGuard],
+  },
+  { path: '**', component: HomeComponent },
 ];

@@ -5,31 +5,28 @@ import { InversionService } from '../../services/inversion.service';
 import { ClienteService } from '../../services/cliente.service';
 
 export class ObtenerClienteAutenticado {
-  clienteAutenticado: Cliente | null = null;
   inversionesDeCliente: Inversion[] | null = null;
   servicioInversiones = inject(InversionService);
   clienteServicio = inject(ClienteService);
-  inversionesDisponibles: Inversion[] = [];
 
   obtenerClienteAutenticado() {
     this.clienteServicio.obtenerClientes().subscribe({
       next: (cliente) => {
-        this.clienteAutenticado = cliente[0];
         this.clienteServicio.clienteSeleccionado = cliente[0];
         console.log(
           'Cliente en sesion: ',
-          this.clienteAutenticado,
           this.clienteServicio.clienteSeleccionado
         );
       },
       error: (error) => {
         console.log(error);
+        alert(`Error: ${error}`);
       },
     });
   }
   obtenerCuentaActual(idCuenta: string) {
     this.clienteServicio.cuentaSeleccionada =
-      this.clienteAutenticado?.cuenta.find(
+      this.clienteServicio.clienteSeleccionado?.cuenta.find(
         (cuenta) => cuenta.idCuenta === idCuenta
       ) || null;
     console.log('Cuenta actual:', this.clienteServicio.cuentaSeleccionada);
@@ -38,8 +35,11 @@ export class ObtenerClienteAutenticado {
   mostrarInversiones() {
     this.servicioInversiones.obtenerInversiones().subscribe({
       next: (inversiones) => {
-        this.inversionesDisponibles = inversiones;
-        console.log('Inversiones: ', this.inversionesDisponibles);
+        this.servicioInversiones.inversionesDisponibles = inversiones;
+        console.log(
+          'Inversiones: ',
+          this.servicioInversiones.inversionesDisponibles
+        );
       },
       error: (error) => {
         console.log('Error', error);
@@ -55,7 +55,7 @@ export class ObtenerClienteAutenticado {
           (inversion) => inversion.idInversion === idInversion
         );
         if (inversion) {
-          inversion.cliente = this.clienteAutenticado;
+          inversion.cliente = this.clienteServicio.clienteSeleccionado;
           inversion.cuenta = this.clienteServicio.cuentaSeleccionada;
           this.servicioInversiones.actualizarInversionActual(inversion);
           console.log('Inversión Actual:', inversion);
