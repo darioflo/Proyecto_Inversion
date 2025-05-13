@@ -13,6 +13,9 @@
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Actualizar datos de inversión
     </button>
+    <button (click)="limpiar()" mat-raised-button>
+      Limpiar
+    </button>
   </mat-drawer>
 
   <div class="overlay" *ngIf="drawer.opened" (click)="drawer.close()"></div>

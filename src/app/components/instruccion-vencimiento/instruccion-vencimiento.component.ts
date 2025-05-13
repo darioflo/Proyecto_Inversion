@@ -66,6 +66,18 @@ export class InstruccionVencimientoComponent
     }
   }
 
+  guardarInversion(){
+    if (this.inversionActual) {
+      const inversionesGuardadas = localStorage.getItem('inversionesDelCliente')
+      const arregloInversiones = inversionesGuardadas ? JSON.parse(inversionesGuardadas) : []
+
+      arregloInversiones.push(this.inversionActual)
+      localStorage.setItem('inversionesDelCliente',JSON.stringify(arregloInversiones))
+    this.servicioInversion.inversionesDelCliente = arregloInversiones
+    }
+  }
+
+
   finalizarCompra(evento: Event) {
     evento.preventDefault();
     if (this.formulario.valid && this.inversionActual) {
@@ -77,13 +89,7 @@ export class InstruccionVencimientoComponent
             this.inversionActual?.rendimiento
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir ganancia';
-          this.servicioInversion.inversionesDelCliente.push(
-            this.inversionActual
-          );
-          localStorage.setItem(
-            'inversionesDelCliente',
-            JSON.stringify(this.servicioInversion.inversionesDelCliente)
-          );
+          this.guardarInversion()
           break;
         case 'Reinvertir inversion':
           this.reinvertirInversion(
@@ -91,13 +97,7 @@ export class InstruccionVencimientoComponent
             this.inversionActual.rendimiento
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
-          this.servicioInversion.inversionesDelCliente.push(
-            this.inversionActual
-          );
-          localStorage.setItem(
-            'inversionesDelCliente',
-            JSON.stringify(this.servicioInversion.inversionesDelCliente)
-          );
+          this.guardarInversion()
           break;
         case 'Reembolso total':
           this.reembolsarTodo(
@@ -105,13 +105,7 @@ export class InstruccionVencimientoComponent
             this.inversionActual.rendimiento
           );
           this.inversionActual.instruccionVencimiento = 'Reembolso total';
-          this.servicioInversion.inversionesDelCliente.push(
-            this.inversionActual
-          );
-          localStorage.setItem(
-            'inversionesDelCliente',
-            JSON.stringify(this.servicioInversion.inversionesDelCliente)
-          );
+          this.guardarInversion()
           break;
         default:
           break;

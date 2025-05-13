@@ -24,6 +24,7 @@ export class ObtenerClienteAutenticado {
       },
     });
   }
+
   obtenerCuentaActual(idCuenta: string) {
     this.clienteServicio.cuentaSeleccionada =
       this.clienteServicio.clienteSeleccionado?.cuenta.find(
@@ -36,10 +37,20 @@ export class ObtenerClienteAutenticado {
     this.servicioInversiones.obtenerInversiones().subscribe({
       next: (inversiones) => {
         this.servicioInversiones.inversionesDisponibles = inversiones;
-        console.log(
-          'Inversiones: ',
-          this.servicioInversiones.inversionesDisponibles
-        );
+        const inversionesPosibles = localStorage.getItem('inversionesDelCliente');
+        if (inversionesPosibles) {
+          const inversionesGuardadas: Inversion[] = JSON.parse(inversionesPosibles);
+      
+          console.log('Inversiones guardadas:', inversionesGuardadas);
+      
+          this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
+            (inversionDisponible) =>
+              !inversionesGuardadas.some(
+                (inversionGuardada) =>
+                  inversionGuardada.idInversion === inversionDisponible.idInversion
+              )
+          );
+        }
       },
       error: (error) => {
         console.log('Error', error);
@@ -69,19 +80,5 @@ export class ObtenerClienteAutenticado {
     });
   }
 
-  /*obtenerInversionesDeCliente(idCliente: string) {
-    this.servicioInversiones.obtenerInversiones().subscribe({
-      next: (inversiones) => {
-        this.inversionesDeCliente = inversiones.filter(
-          (inversion) => inversion.cliente.idCliente === idCliente
-        );
-        console.log('Inversiones: ', this.inversionesDeCliente);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
 
-  */
 }
