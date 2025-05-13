@@ -37,7 +37,7 @@ export class InstruccionVencimientoComponent
       this.inversionActual.saldo_al_termino = saldoInvertido + rendimiento;
       console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
       console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
-      console.log('Saldo cuenta: ', this.inversionActual.cuenta.saldo);
+      console.log('Saldo cuenta: ', this.inversionActual?.cuenta?.saldo);
     }
     return 0;
   }
@@ -47,7 +47,7 @@ export class InstruccionVencimientoComponent
       this.inversionActual.saldo_al_termino += saldoInvertido + rendimiento;
       console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
       console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
-      console.log('Saldo cuenta: ', this.inversionActual.cuenta.saldo);
+      console.log('Saldo cuenta: ', this.inversionActual?.cuenta?.saldo);
     }
   }
 
@@ -56,7 +56,7 @@ export class InstruccionVencimientoComponent
       this.inversionActual.saldo_al_termino += saldoInvertido + rendimiento;
       console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
       console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
-      console.log('Saldo cuenta: ', this.inversionActual.cuenta.saldo);
+      console.log('Saldo cuenta: ', this.inversionActual?.cuenta?.saldo);
     }
   }
   cambiodeSeleccion(evento: Event) {
@@ -96,7 +96,7 @@ export class InstruccionVencimientoComponent
           break;
       }
       this.router.navigate([
-        `vistaTerminada/${this.inversionActual.cuenta.idCuenta}/${this.inversionActual?.idInversion}`,
+        `vistaTerminada/${this.inversionActual?.cuenta?.idCuenta}/${this.inversionActual?.idInversion}`,
       ]);
       console.log(this.formulario.value);
     } else {

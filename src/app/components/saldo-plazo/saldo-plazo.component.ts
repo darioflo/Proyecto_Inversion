@@ -44,10 +44,13 @@ export class saldoPlazoComponent extends TraerInversion implements OnInit {
         (this.inversionActual.plazo = plazo!);
 
       if (
-        this.inversionActual.saldo_inicial <= this.inversionActual.cuenta.saldo
+        this.inversionActual?.saldo_inicial! <=
+        this.inversionActual?.cuenta?.saldo!
       ) {
-        this.inversionActual.cuenta.saldo =
-          this.inversionActual.cuenta.saldo - saldo!;
+        if (this.inversionActual?.cuenta) {
+          this.inversionActual.cuenta.saldo =
+            this.inversionActual.cuenta.saldo - saldo!;
+        }
 
         this.inversionActual.tasa = this.servicioInversion.calcularTasa(saldo!);
 
@@ -58,7 +61,7 @@ export class saldoPlazoComponent extends TraerInversion implements OnInit {
           );
 
         this.router.navigate([
-          `vistaResumen/${this.inversionActual.cuenta.idCuenta}/${this.inversionActual.idInversion}`,
+          `vistaResumen/${this.inversionActual?.cuenta?.idCuenta}/${this.inversionActual.idInversion}`,
         ]);
         console.log(
           'Datos enviados: ',

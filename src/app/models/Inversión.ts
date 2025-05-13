@@ -4,8 +4,9 @@ import { Cuenta } from './Cuenta';
 export interface Inversion {
   idInversion: string;
   nombre: string;
-  cliente: Cliente;
-  cuenta: Cuenta;
+  descripcion: string;
+  cliente: Cliente | null;
+  cuenta: Cuenta | null;
   saldo_inicial: number;
   saldo_al_termino: number;
   plazo: number;

@@ -37,7 +37,7 @@ export class CatalogoInversionComponent
   }
   continuar() {
     this.router.navigate([
-      `/vistaInstruccion/${this.inversionActual?.cuenta.idCuenta}/${this.inversionActual?.idInversion}`,
+      `/vistaInstruccion/${this.inversionActual?.cuenta?.idCuenta}/${this.inversionActual?.idInversion}`,
     ]);
   }
 }

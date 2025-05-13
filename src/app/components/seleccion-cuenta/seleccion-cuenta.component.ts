@@ -1,6 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Cuenta } from '../../models/Cuenta';
-import { ClienteService } from '../../services/cliente.service';
 import { ObtenerClienteAutenticado } from '../../core/utils/obtener_cliente_autenticado';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -15,10 +13,8 @@ export class SeleccionCuentaComponent
   extends ObtenerClienteAutenticado
   implements OnInit
 {
-  cuentasCliente: Cuenta[] = [];
-  servicioCliente = inject(ClienteService);
-
   ngOnInit(): void {
     this.obtenerClienteAutenticado();
+    console.log(this.clienteAutenticado);
   }
 }

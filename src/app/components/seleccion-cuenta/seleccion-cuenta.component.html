@@ -11,6 +11,7 @@
       class="cuenta"
       *ngFor="let cuenta of clienteAutenticado?.cuenta"
       [routerLink]="['/vistaInversion', cuenta.idCuenta]"
+      (click)="obtenerCuentaActual(cuenta.idCuenta)"
     >
       <p class="id-cuenta">ID de la cuenta: {{ cuenta.idCuenta }}</p>
       <p class="saldo-cuenta">Saldo: ${{ cuenta.saldo }}</p>

@@ -1,14 +1,14 @@
-<section
-  class="home-seccion flex justify-center items-center gap-16 w-screen h-screen flex-col flex-wrap"
->
-  <h1 class="text-7xl text-center titulo">inversiones en tu cuenta</h1>
+<section class="home-seccion">
+  <div class="titulo-contenedor">
+    <h1 class="titulo">Catálogo de inversiones:</h1>
+  </div>
   <div class="contenedor-inversiones">
-    <div class="inversiones" *ngFor="let inversion of inversionesDeCliente">
+    <div class="inversiones" *ngFor="let inversion of inversionesDisponibles">
       <div
         class="inversion"
         [routerLink]="[
           '/vistaSeleccion',
-          inversion.cuenta.idCuenta,
+          clienteServicio.cuentaSeleccionada?.idCuenta,
           inversion.idInversion
         ]"
         (click)="obtenerInversionActual(inversion.idInversion)"
