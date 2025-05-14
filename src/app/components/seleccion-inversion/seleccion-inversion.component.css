@@ -52,8 +52,12 @@
   transform: translateY(-5px);
 }
 
-.inversion h3 {
-  color: var(--segundo-color);
+.titulo-inversion{
+  color: var(--tercer-color);
+}
+
+.inversion:hover .titulo-inversion{
+  color: var(--primer-color);
 }
 
 .inversion p {
@@ -66,10 +70,17 @@
 .inversion p:hover {
   color: var(--primer-color);
 }
+h3:hover{
+  color: var(--primer-color) ;
+}
 
 p {
   font-size: 3rem;
   color: black;
+}
+.boton-continuar{
+  margin-top: 2rem;
+  width: 43%;
 }
 
 @media (max-width: 640px) {

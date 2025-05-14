@@ -8,6 +8,10 @@
   min-height: 100vh;
 }
 
+.boton-continuar{
+  margin-right: 95%;
+}
+
 .anuncio {
   text-align: center;
   background-color: var(--segundo-color);

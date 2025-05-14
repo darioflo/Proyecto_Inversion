@@ -47,11 +47,6 @@ export class saldoPlazoComponent extends TraerInversion implements OnInit {
         this.inversionActual?.saldo_inicial! <=
         this.inversionActual?.cuenta?.saldo!
       ) {
-        if (this.inversionActual?.cuenta) {
-          this.inversionActual.cuenta.saldo =
-            this.inversionActual.cuenta.saldo - saldo!;
-        }
-
         this.inversionActual.tasa = this.servicioInversion.calcularTasa(saldo!);
 
         this.inversionActual.rendimiento =

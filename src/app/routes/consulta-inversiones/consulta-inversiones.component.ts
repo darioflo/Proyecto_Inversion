@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { InversionService } from '../../services/inversion.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Inversion } from '../../models/Inversión';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-inversiones',
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor,RouterLink],
   templateUrl: './consulta-inversiones.component.html',
   styleUrl: './consulta-inversiones.component.css',
 })

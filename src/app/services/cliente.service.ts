@@ -11,6 +11,7 @@ export class ClienteService {
   private http = inject(HttpClient);
   clienteSeleccionado: Cliente | null = null;
   cuentaSeleccionada: Cuenta | null = null;
+  
 
   obtenerClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>('api/clientes');

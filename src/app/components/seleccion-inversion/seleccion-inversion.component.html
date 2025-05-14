@@ -16,9 +16,10 @@
         ]"
         (click)="obtenerInversionActual(inversion.idInversion)"
       >
-        <h3>{{ inversion.nombre }}</h3>
+        <h3 class="titulo-inversion">{{ inversion.nombre }}</h3>
         <p>{{ inversion.descripcion }}</p>
       </div>
     </div>
   </div>
+  <button class="boton-continuar" routerLink="/">Regresar</button>
 </section>

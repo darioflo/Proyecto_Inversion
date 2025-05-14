@@ -9,6 +9,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ClienteService } from '../../services/cliente.service';
+
 
 @Component({
   selector: 'app-instruccion-vencimiento',
@@ -23,6 +25,7 @@ export class InstruccionVencimientoComponent
   instruccionSeleccionada: string = '';
   ubicacion = inject(Location);
   servicioInversion = inject(InversionService);
+  clienteActual = inject(ClienteService)
   router = inject(Router);
   formulario = new FormGroup({
     instruccion: new FormControl<string>('', Validators.required),
@@ -33,36 +36,35 @@ export class InstruccionVencimientoComponent
   }
 
   reinvertirInversionGanancia(saldoInvertido: number, rendimiento: number) {
-    if (this.inversionActual) {
+    if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
       this.inversionActual.saldo_al_termino = saldoInvertido + rendimiento;
-      console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
-      console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
-      console.log('Saldo cuenta: ', this.inversionActual?.cuenta?.saldo);
+      this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
   }
 
   reinvertirInversion(saldoInvertido: number, rendimiento: number) {
-    if (this.inversionActual) {
+    if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
       this.inversionActual.saldo_al_termino += saldoInvertido + rendimiento;
-      console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
-      console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
-      console.log('Saldo cuenta: ', this.inversionActual?.cuenta?.saldo);
+      this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
+
     }
+    return 0;
   }
 
   reembolsarTodo(saldoInvertido: number, rendimiento: number) {
-    if (this.inversionActual) {
+    if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
       this.inversionActual.saldo_al_termino += saldoInvertido + rendimiento;
-      console.log('Saldo inicial: ', this.inversionActual.saldo_inicial);
-      console.log('Saldo al termino: ', this.inversionActual.saldo_al_termino);
-      console.log('Saldo cuenta: ', this.inversionActual?.cuenta?.saldo);
+      this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
+      
     }
+    return 0;
   }
   cambiodeSeleccion(evento: Event) {
     if (this.inversionActual) {
       let opcionSeleccionada = evento.target as HTMLSelectElement;
       this.instruccionSeleccionada = opcionSeleccionada.value;
+      
     }
   }
 
@@ -104,7 +106,7 @@ export class InstruccionVencimientoComponent
             this.inversionActual.saldo_inicial,
             this.inversionActual.rendimiento
           );
-          this.inversionActual.instruccionVencimiento = 'Reembolso total';
+          this.inversionActual.instruccionVencimiento = 'Reembolso total';          
           this.guardarInversion()
           break;
         default:
@@ -115,7 +117,8 @@ export class InstruccionVencimientoComponent
       ]);
       console.log(
         this.formulario.value,
-        this.servicioInversion.inversionesDelCliente
+        this.servicioInversion.inversionesDelCliente[0],
+        '999999999999999999999999999999999999999999'
       );
     } else {
       alert(

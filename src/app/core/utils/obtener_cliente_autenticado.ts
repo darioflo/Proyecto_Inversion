@@ -1,5 +1,4 @@
 import { inject } from '@angular/core';
-import { Cliente } from '../../models/Cliente';
 import { Inversion } from '../../models/Inversión';
 import { InversionService } from '../../services/inversion.service';
 import { ClienteService } from '../../services/cliente.service';
