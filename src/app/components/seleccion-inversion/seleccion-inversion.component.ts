@@ -2,10 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ObtenerClienteAutenticado } from '../../core/utils/obtener_cliente_autenticado';
 import { RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { ClienteService } from '../../services/cliente.service';
-import { Cliente } from '../../models/Cliente';
 import { InversionService } from '../../services/inversion.service';
-import { Inversion } from '../../models/Inversión';
+
 
 @Component({
   selector: 'app-seleccion-inversion',

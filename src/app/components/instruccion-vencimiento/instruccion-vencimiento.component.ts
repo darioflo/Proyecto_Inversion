@@ -22,7 +22,7 @@ export class InstruccionVencimientoComponent
   extends TraerInversion
   implements OnInit
 {
-  instruccionSeleccionada: string = '';
+  instruccionSeleccionada: string;
   ubicacion = inject(Location);
   servicioInversion = inject(InversionService);
   clienteActual = inject(ClienteService)
@@ -30,6 +30,11 @@ export class InstruccionVencimientoComponent
   formulario = new FormGroup({
     instruccion: new FormControl<string>('', Validators.required),
   });
+
+  constructor(){
+    super()
+    this.instruccionSeleccionada =''
+  }
 
   ngOnInit(): void {
     this.suscribirseAInversion(this.servicioInversion);
@@ -69,7 +74,9 @@ export class InstruccionVencimientoComponent
   }
 
   guardarInversion(){
-    if (this.inversionActual) {
+    if (this.inversionActual?.cuenta ) {
+      
+      this.inversionActual.cuenta.idInversion?.push(this.inversionActual.idInversion);
       const inversionesGuardadas = localStorage.getItem('inversionesDelCliente')
       const arregloInversiones = inversionesGuardadas ? JSON.parse(inversionesGuardadas) : []
 
@@ -115,11 +122,6 @@ export class InstruccionVencimientoComponent
       this.router.navigate([
         `vistaTerminada/${this.inversionActual?.cuenta?.idCuenta}/${this.inversionActual?.idInversion}`,
       ]);
-      console.log(
-        this.formulario.value,
-        this.servicioInversion.inversionesDelCliente[0],
-        '999999999999999999999999999999999999999999'
-      );
     } else {
       alert(
         'Formulario inválido: Debe seleccionar una opción antes de invertir'

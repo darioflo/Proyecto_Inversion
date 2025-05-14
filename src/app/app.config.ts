@@ -11,7 +11,7 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InversionesBDService } from './DB/inversiones-bd.service';
 
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     importProvidersFrom(
       HttpClientInMemoryWebApiModule.forRoot(InversionesBDService)
     ),

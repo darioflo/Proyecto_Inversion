@@ -40,15 +40,19 @@ export class ObtenerClienteAutenticado {
         if (inversionesPosibles) {
           const inversionesGuardadas: Inversion[] = JSON.parse(inversionesPosibles);
       
-          console.log('Inversiones guardadas:', inversionesGuardadas);
-      
-          this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
-            (inversionDisponible) =>
-              !inversionesGuardadas.some(
-                (inversionGuardada) =>
-                  inversionGuardada.idInversion === inversionDisponible.idInversion
-              )
-          );
+          console.log(`Inversiones guardadas: ${inversionesGuardadas}`);
+          
+          inversionesGuardadas.forEach((inversionGuardada)=>{
+            if (inversionGuardada.cuenta?.idCuenta === this.clienteServicio.cuentaSeleccionada?.idCuenta) {
+              this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
+                (inversionDisponible) =>
+                  !inversionesGuardadas.some(
+                    (inversionGuardada) =>
+                      inversionGuardada.idInversion === inversionDisponible.idInversion
+                  )
+              );
+            }
+          })
         }
       },
       error: (error) => {

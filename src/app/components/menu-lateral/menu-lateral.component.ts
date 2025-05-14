@@ -21,7 +21,11 @@ import { RouterLink } from '@angular/router';
   ],
 })
 export class SidenavAutosizeExample {
-  showFiller = false;
+  showFiller:boolean ;
+
+  constructor(){
+    this.showFiller = false
+  }
 
   limpiar(){
     localStorage.clear()

@@ -29,12 +29,14 @@ export class InversionesBDService implements InMemoryDbService {
         idCliente: 'Cliente-001',
         saldo: 10000,
         contrato: contratos[0],
+        idInversion : null,
       },
       {
         idCuenta: 'CUENTA-002',
         idCliente: 'Cliente-001',
         saldo: 8000,
         contrato: contratos[1],
+        idInversion : null,
       },
     ];
     const clientes: Cliente[] = [

@@ -3,7 +3,6 @@ import { ObtenerClienteAutenticado } from '../../core/utils/obtener_cliente_aute
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Inversion } from '../../models/Inversión';
-
 @Component({
   selector: 'app-seleccion-cuenta',
   imports: [NgFor, RouterLink],
@@ -15,7 +14,8 @@ export class SeleccionCuentaComponent
   implements OnInit
 {
   ngOnInit(): void {
-    let actualizarCuenta = localStorage.getItem('inversionesDelCliente')
+    if (typeof localStorage !== 'undefined') {
+      let actualizarCuenta = localStorage.getItem('inversionesDelCliente')
     if (actualizarCuenta) {
       let inversionHecha = JSON.parse(actualizarCuenta)
       let ultimaInversion = inversionHecha[inversionHecha.length -1 ]
@@ -30,6 +30,7 @@ export class SeleccionCuentaComponent
       }
       console.log(ultimaInversion.cuenta.saldo);
       
+    }
     }
     
   }
